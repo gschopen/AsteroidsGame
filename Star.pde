@@ -8,3 +8,9 @@ class Star{
     myWidth = (int)(Math.random()*2)+1;
     myHeight = (int)(Math.random()*2+1);
   }
+  
+  public void show(){
+   // fill(225,225,225);
+    ellipse(myX,myY,myWidth,myHeight);
+  }
+}
