@@ -17,12 +17,13 @@ class Spaceship extends Floater
       yCorners[1] = 0;
       xCorners[2] = -8;
       yCorners[2] = 8;
+    
     }
-   public double getterX(){
-     return myCenterX;
+   public int getterX(){
+     return (int)myCenterX;
    }
-    public double getterY(){
-     return myCenterY;
+    public int getterY(){
+     return (int)myCenterY;
    }
     public double getterSX(){
      return myXspeed;
