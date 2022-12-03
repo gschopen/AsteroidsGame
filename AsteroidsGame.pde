@@ -1,5 +1,5 @@
-
 Star[] chub = new Star[200];
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 public void keyPressed(){
   //frameRate(100);
   if(key == 'd'){//right turn
@@ -21,30 +21,3 @@ ellipse((int)Rex.getterX(),(int)Rex.getterY(),10,10);
   }
 }
 
-public void setup(){
-  size(400,400);
-  Rex = new Spaceship();
-//  background(0,0,0);
-  for(int i = 0; i < chub.length; i++){
-    chub[i] = new Star();
-  }
-}
-Spaceship Rex;
-boolean left = false;
-boolean right = false;
-boolean forward = false;
-boolean backward = false;
-boolean hyperspace = false;
-
-public void draw(){
-  background(0,0,0);
- 
-  Rex.show();
-  if(forward == true)
-  Rex.move();
-
-   for(int i = 0; i < chub.length; i++){
-     chub[i].show();    
-   }
-   
-}
