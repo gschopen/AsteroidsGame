@@ -1,59 +1,39 @@
-Star[] chub = new Star[200];
-ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-public void keyPressed(){
-  //frameRate(100);
-  if(key == 'd'){//right turn
-  Rex.turn(15);}
+class Asteroid extends Floater {
+  private double rotSpeed;
+  Asteroid() {
+    myCenterX = Math.random()*500;
+    myCenterY = Math.random()*500;
+    corners = 4;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    int scaleFactor = 2;
+    xCorners[0] = ((int)(Math.random()*2)+2)*scaleFactor;
+    yCorners[0] = ((int)(Math.random()*7)+2)*scaleFactor;
+    xCorners[1] = ((int)(Math.random()*3)+2)*scaleFactor;
+    yCorners[1] = -((int)(Math.random()*6)+2)*scaleFactor;    
+    xCorners[2] = -((int)(Math.random()*4)+3)*scaleFactor;
+    yCorners[2] = -((int)(Math.random()*10)+3)*scaleFactor;    
+    xCorners[3] = -((int)(Math.random()*1)+10)*scaleFactor;
+    yCorners[3] = -((int)(Math.random()*1)+2)*scaleFactor;            
+    myColor = color(225,225,225);   
+    myXspeed = (Math.random()*5)+2;
+    myYspeed = (Math.random()*5)+2; 
+    myPointDirection = 0;
+    rotSpeed = (Math.random()*2)+3;
+  }
+    public int getMyCenterY() {
+    return (int)myCenterY;
+  }
+  public int getMyCenterX() {
+    return (int)myCenterX;
+  }
+  public boolean tooClose(int shipX, int shipY) {
+    double distance = dist((float)myCenterX, (float)myCenterY, (float)shipX, (float)shipY);
+    return distance < 20;
+  }
+  public void move(int shipX, int shipY) {
+    turn(rotSpeed);
+    super.move();
+  }
+}
   
-  if(key == 'a'){//left turn
-  Rex.turn(-15);}
-  
-  if(key == 'w'){
-  Rex.accelerate(0.2);
-forward = true;
-fill(225,0,0);
-ellipse((int)Rex.getterX(),(int)Rex.getterY(),10,10);
-}
-
-  if(key == 'q'){
-    Rex.hyperspace();
-    background(0,0,225);
-  }
-}
-
-public void setup(){
-  size(400,400);
-  Rex = new Spaceship();
-//  background(0,0,0);
-  for(int i = 0; i < chub.length; i++){
-    chub[i] = new Star();}
- for (int i = 0; i < 10; i++) {
-    asteroids.add(new Asteroid());
-  }
-  }
-
-
-
-Spaceship Rex;
-boolean left = false;
-boolean right = false;
-boolean forward = false;
-boolean backward = false;
-boolean hyperspace = false;
-
-public void draw(){
-  background(0,0,0);
-
-  Rex.show();
-  if(forward == true)
-  Rex.move();
-
-   for(int i = 0; i < chub.length; i++){
-     chub[i].show();    
-   }
-   for (int i = 0; i < 10; i++) {
-    if (asteroids.get(i).tooClose(Rex.getterX(), Rex.getterY())) asteroids.set(i, new Asteroid());
-    asteroids.get(i).move();
-    asteroids.get(i).show();
-  }
-}
