@@ -14,3 +14,6 @@ class Star{
     ellipse(myX,myY,myWidth,myHeight);
   }
 }
+
+
+
