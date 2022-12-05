@@ -1,8 +1,4 @@
 
-
-
-
-
 class Asteroid extends Floater {
   private double rotSpeed;
   Asteroid() {
@@ -41,10 +37,3 @@ class Asteroid extends Floater {
     super.move();
   }
 }
-  
-
-  
-  
-  
-  
-  
