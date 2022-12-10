@@ -1,5 +1,6 @@
-Star[] chub = new Star[200];
+Star[] chub = new Star[500];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 public void keyPressed(){
   //frameRate(100);
   if(key == 'd'){//right turn
@@ -19,10 +20,13 @@ ellipse((int)Rex.getterX(),(int)Rex.getterY(),10,10);
     Rex.hyperspace();
     background(0,0,225);
   }
+  else if(key == ' ') {
+    bullets.add(new Bullet(Rex));
+  }
 }
 
 public void setup(){
-  size(400,400);
+  size(1000,600);
   Rex = new Spaceship();
 //  background(0,0,0);
   for(int i = 0; i < chub.length; i++){
@@ -30,6 +34,7 @@ public void setup(){
  for (int i = 0; i < 10; i++) {
     asteroids.add(new Asteroid());
   }
+  
   }
 
 
@@ -55,5 +60,19 @@ public void draw(){
     if (asteroids.get(i).tooClose(Rex.getterX(), Rex.getterY())) asteroids.set(i, new Asteroid());
     asteroids.get(i).move();
     asteroids.get(i).show();
+  }
+  for (int i = 0; i < bullets.size(); i++) {
+    boolean itHappened = false;
+    for (int seci = 0; seci < asteroids.size(); seci++) {
+       if (bullets.get(i).tooClose(asteroids.get(seci).getMyCenterX(), asteroids.get(seci).getMyCenterY())) {
+         asteroids.set(seci, new Asteroid());
+         bullets.remove(i);
+         itHappened = true;
+         break;
+       }
+    }
+    if (itHappened) break;
+    bullets.get(i).move();
+    bullets.get(i).show();
   }
 }
